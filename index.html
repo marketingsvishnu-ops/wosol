@@ -1,866 +1,271 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GYM3D | Next Level Fitness</title>
+<title>ICESUPER Demo</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
+body{
+  background:#0f1020;
+  color:white;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #050505;
-    color: white;
-    overflow-x: hidden;
+.container{
+  display:flex;
+  min-height:100vh;
 }
 
-/* ===== BACKGROUND ===== */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(255,70,0,.18), transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(255,140,0,.10), transparent 30%);
-    pointer-events: none;
-    z-index: -1;
+.demo{
+  width:70%;
+  background:#111;
 }
 
-/* ===== NAVBAR ===== */
-
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    background: rgba(0,0,0,.65);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255,255,255,.08);
+iframe{
+  width:100%;
+  height:100vh;
+  border:none;
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: 900;
-    color: #ff4d00;
-    letter-spacing: 3px;
+.right{
+  width:30%;
+  padding:30px 22px;
+  background:linear-gradient(180deg,#181a35,#0b0c18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
+.box{
+  width:100%;
+  background:rgba(10,10,10,.92);
+  border:1px solid #d4af37;
+  border-radius:22px;
+  padding:26px 20px;
+  text-align:center;
+  box-shadow:0 0 35px rgba(212,175,55,.35);
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: .3s;
+.badge{
+  display:inline-block;
+  background:#d4af37;
+  color:#111;
+  padding:8px 18px;
+  border-radius:30px;
+  font-weight:800;
+  margin-bottom:16px;
 }
 
-nav a:hover {
-    color: #ff4d00;
+h1{
+  font-size:32px;
+  color:#ffd86b;
+  margin-bottom:10px;
+  text-transform:uppercase;
 }
 
-/* ===== HERO ===== */
-
-.hero {
-    min-height: 100vh;
-    padding: 130px 7% 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    perspective: 1200px;
+.sub{
+  font-size:17px;
+  line-height:1.5;
+  margin-bottom:22px;
+  color:#eee;
 }
 
-.hero-text {
-    max-width: 600px;
-    z-index: 2;
+.features{
+  display:grid;
+  gap:12px;
+  margin:22px 0;
 }
 
-.hero-text small {
-    color: #ff4d00;
-    letter-spacing: 5px;
-    font-weight: bold;
+.feature{
+  background:linear-gradient(90deg,#1b1b1b,#2b2208);
+  border:1px solid rgba(212,175,55,.6);
+  padding:14px;
+  border-radius:14px;
+  font-size:17px;
+  font-weight:700;
 }
 
-.hero-text h1 {
-    font-size: clamp(50px, 7vw, 100px);
-    line-height: .9;
-    margin: 25px 0;
-    text-shadow: 0 15px 30px rgba(0,0,0,.7);
+.feature span{
+  color:#ffd86b;
 }
 
-.hero-text h1 span {
-    color: #ff4d00;
+.website-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:16px;
+  font-size:14px;
+  font-weight:bold;
 }
 
-.hero-text p {
-    color: #aaa;
-    font-size: 18px;
-    line-height: 1.7;
-    margin-bottom: 30px;
+.website-row a{
+  text-decoration:none;
 }
 
-.btn {
-    display: inline-block;
-    padding: 16px 32px;
-    color: white;
-    background: linear-gradient(135deg,#ff4d00,#ff8a00);
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    box-shadow: 0 15px 35px rgba(255,70,0,.25);
-    transition: .3s;
+.website{
+  color:#25D366;
 }
 
-.btn:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 20px 45px rgba(255,70,0,.4);
+.whatsapp-small{
+  color:#ffd86b;
 }
 
-/* ===== 3D GYM OBJECT ===== */
-
-.scene {
-    width: 430px;
-    height: 430px;
-    perspective: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.cta{
+  display:block;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  padding:17px;
+  border-radius:16px;
+  font-size:20px;
+  font-weight:900;
+  margin-top:22px;
+  box-shadow:0 8px 18px rgba(37,211,102,.35);
+  transition:.3s;
 }
 
-.cube {
-    width: 230px;
-    height: 230px;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: rotateCube 14s infinite linear;
+.cta:hover{
+  transform:scale(1.03);
+  background:#1ebe5d;
 }
 
-.face {
-    position: absolute;
-    width: 230px;
-    height: 230px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,70,0,.08);
-    border: 2px solid #ff4d00;
-    box-shadow:
-        inset 0 0 35px rgba(255,70,0,.12),
-        0 0 35px rgba(255,70,0,.15);
-    backdrop-filter: blur(5px);
+.trust{
+  margin-top:16px;
+  color:#ccc;
+  font-size:14px;
+  line-height:1.5;
 }
 
-.face span {
-    font-size: 80px;
-    filter: drop-shadow(0 10px 15px black);
+.footer{
+  margin-top:18px;
+  font-size:12px;
+  color:#aaa;
+  line-height:1.5;
 }
 
-.front  { transform: translateZ(115px); }
-.back   { transform: rotateY(180deg) translateZ(115px); }
-.right  { transform: rotateY(90deg) translateZ(115px); }
-.left   { transform: rotateY(-90deg) translateZ(115px); }
-.top    { transform: rotateX(90deg) translateZ(115px); }
-.bottom { transform: rotateX(-90deg) translateZ(115px); }
+@media(max-width:768px){
+  .container{
+    flex-direction:column;
+  }
 
-@keyframes rotateCube {
-    from {
-        transform: rotateX(-15deg) rotateY(0deg);
-    }
-    to {
-        transform: rotateX(-15deg) rotateY(360deg);
-    }
+  .demo,
+  .right{
+    width:100%;
+  }
+
+  iframe{
+    height:500px;
+  }
+
+  .right{
+    padding:20px;
+  }
 }
 
-/* ===== FLOATING BALLS ===== */
+@media(max-width:480px){
+  h1{
+    font-size:26px;
+  }
 
-.ball {
-    position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(135deg,#ff4d00,#ffb000);
-    box-shadow: 0 15px 40px rgba(255,70,0,.3);
-}
+  .sub{
+    font-size:16px;
+  }
 
-.ball.one {
-    width: 30px;
-    height: 30px;
-    top: 15%;
-    right: 10%;
-    animation: float 4s ease-in-out infinite;
-}
+  .feature{
+    font-size:16px;
+    padding:12px;
+  }
 
-.ball.two {
-    width: 18px;
-    height: 18px;
-    bottom: 20%;
-    left: 5%;
-    animation: float 5s ease-in-out infinite reverse;
-}
+  .cta{
+    font-size:18px;
+    padding:15px;
+  }
 
-.ball.three {
-    width: 45px;
-    height: 45px;
-    bottom: 10%;
-    right: 25%;
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%,100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-30px);
-    }
-}
-
-/* ===== SECTIONS ===== */
-
-section {
-    padding: 100px 7%;
-}
-
-.title {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.title small {
-    color: #ff4d00;
-    letter-spacing: 4px;
-    font-weight: bold;
-}
-
-.title h2 {
-    font-size: 50px;
-    margin-top: 10px;
-}
-
-.title span {
-    color: #ff4d00;
-}
-
-/* ===== 3D CARDS ===== */
-
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 30px;
-    perspective: 1200px;
-}
-
-.card {
-    min-height: 300px;
-    padding: 35px;
-    border-radius: 18px;
-    background:
-        linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
-    border: 1px solid rgba(255,255,255,.12);
-    backdrop-filter: blur(15px);
-    transform-style: preserve-3d;
-    transition: transform .15s ease;
-    box-shadow:
-        0 25px 50px rgba(0,0,0,.5),
-        inset 0 1px rgba(255,255,255,.1);
-}
-
-.card:hover {
-    box-shadow:
-        0 35px 70px rgba(0,0,0,.7),
-        0 0 30px rgba(255,70,0,.1);
-}
-
-.card-icon {
-    font-size: 60px;
-    margin-bottom: 30px;
-    transform: translateZ(40px);
-}
-
-.card h3 {
-    font-size: 28px;
-    margin-bottom: 15px;
-    transform: translateZ(30px);
-}
-
-.card p {
-    color: #aaa;
-    line-height: 1.7;
-    transform: translateZ(20px);
-}
-
-/* ===== STATS ===== */
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 20px;
-}
-
-.stat {
-    padding: 35px;
-    text-align: center;
-    border-radius: 15px;
-    background: #111;
-    border: 1px solid #222;
-    transform-style: preserve-3d;
-    transition: .3s;
-}
-
-.stat:hover {
-    transform: translateY(-10px) rotateX(8deg);
-    border-color: #ff4d00;
-}
-
-.stat h3 {
-    font-size: 45px;
-    color: #ff4d00;
-}
-
-.stat p {
-    color: #999;
-    margin-top: 5px;
-}
-
-/* ===== PRICING ===== */
-
-.pricing {
-    background: linear-gradient(#080808,#0d0d0d);
-}
-
-.price-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 30px;
-    perspective: 1500px;
-}
-
-.price-card {
-    padding: 45px 30px;
-    text-align: center;
-    background: linear-gradient(145deg,#161616,#0d0d0d);
-    border: 1px solid #292929;
-    border-radius: 20px;
-    transition: .4s;
-    transform-style: preserve-3d;
-}
-
-.price-card:hover {
-    transform: translateY(-15px) rotateX(6deg) rotateY(-5deg);
-    border-color: #ff4d00;
-}
-
-.price-card.featured {
-    border: 2px solid #ff4d00;
-    transform: translateY(-15px);
-}
-
-.price-card h3 {
-    font-size: 27px;
-}
-
-.price {
-    font-size: 55px;
-    color: #ff4d00;
-    font-weight: 900;
-    margin: 20px 0;
-}
-
-.price-card ul {
-    list-style: none;
-    margin-bottom: 30px;
-}
-
-.price-card li {
-    padding: 10px;
-    color: #aaa;
-    border-bottom: 1px solid #222;
-}
-
-/* ===== CONTACT ===== */
-
-.contact-box {
-    max-width: 800px;
-    margin: auto;
-    padding: 50px;
-    border-radius: 25px;
-    background: linear-gradient(145deg,#171717,#0c0c0c);
-    border: 1px solid #292929;
-    box-shadow: 0 30px 80px rgba(0,0,0,.6);
-}
-
-.contact-box h2 {
-    text-align: center;
-    font-size: 45px;
-    margin-bottom: 30px;
-}
-
-form {
-    display: grid;
-    gap: 15px;
-}
-
-input,
-textarea {
-    padding: 17px;
-    border: 1px solid #333;
-    background: #080808;
-    color: white;
-    border-radius: 8px;
-    outline: none;
-}
-
-input:focus,
-textarea:focus {
-    border-color: #ff4d00;
-}
-
-textarea {
-    height: 140px;
-    resize: none;
-}
-
-button {
-    padding: 17px;
-    border: 0;
-    border-radius: 8px;
-    background: linear-gradient(135deg,#ff4d00,#ff8a00);
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* ===== FOOTER ===== */
-
-footer {
-    text-align: center;
-    padding: 35px;
-    color: #666;
-    border-top: 1px solid #222;
-}
-
-footer span {
-    color: #ff4d00;
-}
-
-/* ===== MOBILE ===== */
-
-@media(max-width:900px) {
-
-    nav ul {
-        display: none;
-    }
-
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 150px;
-    }
-
-    .scene {
-        width: 300px;
-        height: 300px;
-        transform: scale(.75);
-    }
-
-    .card-grid,
-    .price-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .stats {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .price-card.featured {
-        transform: none;
-    }
-}
-
-@media(max-width:500px) {
-
-    .hero-text h1 {
-        font-size: 55px;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    section {
-        padding: 70px 5%;
-    }
-
-    .contact-box {
-        padding: 25px;
-    }
-
-    .title h2 {
-        font-size: 38px;
-    }
+  .website-row{
+    flex-direction:column;
+    gap:8px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
+<div class="container">
 
-<nav>
-    <div class="logo">GYM3D</div>
+  <div class="demo">
+    <iframe src="https://icesuper.info/"></iframe>
+  </div>
 
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+  <div class="right">
+    <div class="box">
 
-<!-- HERO -->
+      <div class="badge">ICESUPER OFFICIAL</div>
 
-<section class="hero" id="home">
+      <h1>ICESUPER WHITELABEL &amp; MASTER AVAILABLE</h1>
 
-    <div class="hero-text">
+      <p class="sub">
+        Get your Icesuper Whitelabel and Master Panel
+        in the cheapest rate.
+      </p>
 
-        <small>THE FUTURE OF FITNESS</small>
+      <div class="features">
+        <div class="feature">
+          Whitelabel: <span>Available Now</span>
+        </div>
 
-        <h1>
-            TRAIN<br>
-            <span>IN 3D.</span>
-        </h1>
+        <div class="feature">
+          Master Panel: <span>Available Now</span>
+        </div>
 
-        <p>
-            Experience a next-generation fitness environment
-            designed for people who want to become stronger,
-            faster and better.
-        </p>
+        <div class="feature">
+          Cheapest Rate: <span>Best Price</span>
+        </div>
 
-        <a href="#pricing" class="btn">
-            JOIN THE GYM
+        <div class="feature">
+          Website: <span>icesuper.info</span>
+        </div>
+      </div>
+
+      <div class="website-row">
+        <a class="website" href="https://icesuper.info/" target="_blank">
+          🌐 icesuper.info
         </a>
 
-    </div>
+        <a class="whatsapp-small" href="https://wa.me/+447767775396" target="_blank">
+          💬 WhatsApp
+        </a>
+      </div>
 
-    <div class="scene">
+      <a class="cta"
+         href="https://wa.me/+447767775396?text=Hello%20I%20want%20Icesuper%20Whitelabel%20or%20Master"
+         target="_blank">
+        📲 WhatsApp Now
+      </a>
 
-        <div class="cube">
+      <p class="trust">
+        ✅ Check our website on left side<br>
+        ✅ Direct WhatsApp support<br>
+        ✅ Cheapest rate available<br>
+        📞 +447767775396
+      </p>
 
-            <div class="face front">
-                <span>🏋️</span>
-            </div>
-
-            <div class="face back">
-                <span>💪</span>
-            </div>
-
-            <div class="face right">
-                <span>🔥</span>
-            </div>
-
-            <div class="face left">
-                <span>⚡</span>
-            </div>
-
-            <div class="face top">
-                <span>🏆</span>
-            </div>
-
-            <div class="face bottom">
-                <span>🥇</span>
-            </div>
-
-        </div>
+      <div class="footer">
+        Icesuper Whitelabel &amp; Master Available | Contact on WhatsApp
+      </div>
 
     </div>
+  </div>
 
-    <div class="ball one"></div>
-    <div class="ball two"></div>
-    <div class="ball three"></div>
-
-</section>
-
-<!-- STATS -->
-
-<section>
-
-    <div class="stats">
-
-        <div class="stat">
-            <h3>10K+</h3>
-            <p>Members</p>
-        </div>
-
-        <div class="stat">
-            <h3>25+</h3>
-            <p>Trainers</p>
-        </div>
-
-        <div class="stat">
-            <h3>50+</h3>
-            <p>Machines</p>
-        </div>
-
-        <div class="stat">
-            <h3>24/7</h3>
-            <p>Access</p>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- FEATURES -->
-
-<section id="features">
-
-    <div class="title">
-        <small>WHY US</small>
-        <h2>BUILT FOR <span>RESULTS</span></h2>
-    </div>
-
-    <div class="card-grid">
-
-        <div class="card">
-
-            <div class="card-icon">🏋️</div>
-
-            <h3>Heavy Training</h3>
-
-            <p>
-                Premium equipment designed for serious
-                strength and muscle development.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-icon">⚡</div>
-
-            <h3>HIIT Zone</h3>
-
-            <p>
-                High intensity workouts designed to improve
-                endurance and performance.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-icon">🥗</div>
-
-            <h3>Fitness Guidance</h3>
-
-            <p>
-                Professional guidance to help you build
-                sustainable training and nutrition habits.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- PRICING -->
-
-<section class="pricing" id="pricing">
-
-    <div class="title">
-
-        <small>MEMBERSHIP</small>
-
-        <h2>CHOOSE YOUR <span>LEVEL</span></h2>
-
-    </div>
-
-    <div class="price-grid">
-
-        <div class="price-card">
-
-            <h3>STARTER</h3>
-
-            <div class="price">$25</div>
-
-            <ul>
-                <li>Gym Access</li>
-                <li>Locker Room</li>
-                <li>Cardio Zone</li>
-                <li>Free Wi-Fi</li>
-            </ul>
-
-            <a href="#contact" class="btn">
-                SELECT
-            </a>
-
-        </div>
-
-        <div class="price-card featured">
-
-            <h3>PRO</h3>
-
-            <div class="price">$49</div>
-
-            <ul>
-                <li>24/7 Gym Access</li>
-                <li>All Equipment</li>
-                <li>Group Classes</li>
-                <li>Trainer Sessions</li>
-            </ul>
-
-            <a href="#contact" class="btn">
-                SELECT
-            </a>
-
-        </div>
-
-        <div class="price-card">
-
-            <h3>ELITE</h3>
-
-            <div class="price">$79</div>
-
-            <ul>
-                <li>24/7 Gym Access</li>
-                <li>All Equipment</li>
-                <li>Unlimited Classes</li>
-                <li>Personal Trainer</li>
-            </ul>
-
-            <a href="#contact" class="btn">
-                SELECT
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact">
-
-    <div class="contact-box">
-
-        <h2>
-            START YOUR <span style="color:#ff4d00;">JOURNEY</span>
-        </h2>
-
-        <form id="contactForm">
-
-            <input
-                type="text"
-                id="name"
-                placeholder="Your Name"
-                required
-            >
-
-            <input
-                type="email"
-                placeholder="Your Email"
-                required
-            >
-
-            <input
-                type="tel"
-                placeholder="Phone Number"
-            >
-
-            <textarea
-                placeholder="Tell us about your fitness goal..."
-                required
-            ></textarea>
-
-            <button type="submit">
-                JOIN NOW
-            </button>
-
-        </form>
-
-    </div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-    © 2026 <span>GYM3D</span> — Train Beyond Limits.
-</footer>
-
-<script>
-
-/* ===== 3D CARD MOUSE EFFECT ===== */
-
-const cards = document.querySelectorAll(".card");
-
-cards.forEach(card => {
-
-    card.addEventListener("mousemove", e => {
-
-        const rect = card.getBoundingClientRect();
-
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = ((y - centerY) / centerY) * -8;
-        const rotateY = ((x - centerX) / centerX) * 8;
-
-        card.style.transform =
-            `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-
-    });
-
-    card.addEventListener("mouseleave", () => {
-        card.style.transform = "rotateX(0) rotateY(0)";
-    });
-
-});
-
-/* ===== FORM ===== */
-
-document
-.getElementById("contactForm")
-.addEventListener("submit", function(e) {
-
-    e.preventDefault();
-
-    const name = document.getElementById("name").value;
-
-    alert(
-        "Welcome to GYM3D, " +
-        name +
-        "! We will contact you soon."
-    );
-
-    this.reset();
-
-});
-
-</script>
+</div>
 
 </body>
 </html>
