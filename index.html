@@ -1,345 +1,760 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AllPanel 7 ID</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLEXZONE | Premium Fitness</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-body{
-    background:#042b23;
-    color:#fff;
-    overflow-x:auto;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b0b;
+            color: #fff;
+        }
 
-.container{
-    display:flex;
-    min-height:100vh;
-}
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+        }
 
-.demo{
-    width:70%;
-    background:#111;
-}
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ff4d00;
+        }
 
-iframe{
-    width:100%;
-    height:100vh;
-    border:none;
-}
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-.right{
-    width:30%;
-    padding:30px 22px;
-    background:linear-gradient(180deg,#008f73,#043d33);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-.box{
-    width:100%;
-    background:#07110f;
-    border:1px solid #00e8ad;
-    border-radius:22px;
-    padding:24px 18px;
-    text-align:center;
-    box-shadow:0 0 30px rgba(0,232,173,.35);
-}
+        nav ul li a:hover {
+            color: #ff4d00;
+        }
 
-.badge{
-    display:inline-block;
-    background:#00e8ad;
-    color:#001f18;
-    padding:10px 22px;
-    border-radius:30px;
-    font-weight:bold;
-    margin-bottom:16px;
-}
+        .menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
 
-h1{
-    color:#00e8ad;
-    font-size:30px;
-    text-transform:uppercase;
-    margin-bottom:12px;
-}
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 8% 60px;
+            background:
+                linear-gradient(90deg, #000 20%, transparent),
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
+        }
 
-.sub{
-    color:#ddd;
-    line-height:1.6;
-    margin-bottom:18px;
-    font-size:16px;
-}
+        .hero-content {
+            max-width: 650px;
+        }
 
-.process{
-    text-align:left;
-    background:linear-gradient(180deg,#07110f,#06483b);
-    border:1px solid #00e8ad;
-    border-radius:16px;
-    padding:18px;
-    margin:18px 0;
-}
+        .hero small {
+            color: #ff4d00;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
 
-.process h2{
-    color:#00e8ad;
-    font-size:20px;
-    margin-bottom:12px;
-    text-align:center;
-}
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 85px);
+            line-height: 0.95;
+            margin: 20px 0;
+            font-weight: 900;
+        }
 
-.process h3{
-    color:#fff;
-    font-size:18px;
-    margin:16px 0 8px;
-}
+        .hero h1 span {
+            color: #ff4d00;
+        }
 
-.process p,
-.process li{
-    color:#ddd;
-    font-size:15px;
-    line-height:1.6;
-}
+        .hero p {
+            color: #ccc;
+            font-size: 18px;
+            max-width: 550px;
+            margin-bottom: 30px;
+        }
 
-.process ol{
-    padding-left:20px;
-}
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #ff4d00;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
 
-.manual-whatsapp,
-.signup{
-    display:block;
-    background:#00e8ad;
-    color:#001f18;
-    text-decoration:none;
-    padding:15px;
-    border-radius:14px;
-    font-size:20px;
-    font-weight:bold;
-    text-align:center;
-    box-shadow:0 0 18px rgba(0,232,173,.4);
-}
+        .btn:hover {
+            background: white;
+            color: #111;
+            transform: translateY(-3px);
+        }
 
-.manual-whatsapp{
-    margin:14px 0 8px;
-}
+        /* GENERAL */
+        section {
+            padding: 100px 8%;
+        }
 
-.signup{
-    margin-top:16px;
-}
+        .title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
 
-.manual-whatsapp:hover,
-.signup:hover{
-    background:#00c996;
-}
+        .title small {
+            color: #ff4d00;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
 
-.features{
-    display:grid;
-    gap:12px;
-    margin:22px 0 18px;
-}
+        .title h2 {
+            font-size: 45px;
+            margin-top: 10px;
+        }
 
-.feature{
-    background:linear-gradient(90deg,#092a24,#06483b);
-    border:1px solid #00e8ad;
-    border-radius:14px;
-    padding:14px;
-    font-size:17px;
-    font-weight:bold;
-}
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: #ff4d00;
+            padding: 35px 8%;
+            text-align: center;
+        }
 
-.feature span{
-    color:#00e8ad;
-}
+        .stat h2 {
+            font-size: 40px;
+        }
 
-.website-row{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    margin-top:18px;
-    font-weight:bold;
-    flex-wrap:wrap;
-}
+        .stat p {
+            font-weight: bold;
+        }
 
-.website-row a{
-    text-decoration:none;
-    word-break:break-word;
-}
+        /* WORKOUTS */
+        .workouts {
+            background: #111;
+        }
 
-.website,
-.whatsapp-small{
-    color:#00e8ad;
-}
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
 
-.trust{
-    margin-top:18px;
-    color:#ccc;
-    line-height:1.7;
-}
+        .workout {
+            min-height: 350px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border-radius: 8px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
 
-.footer{
-    margin-top:20px;
-    color:#888;
-    font-size:12px;
-}
+        .workout::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        }
 
-/* MOBILE — Laptop jaisa same layout */
-@media(max-width:768px){
+        .workout-content {
+            position: relative;
+            z-index: 1;
+        }
 
-    body{
-        overflow-x:auto;
-    }
+        .workout h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
 
-    .container{
-        width:1200px;
-        min-width:1200px;
-        flex-direction:row;
-    }
+        .workout p {
+            color: #ddd;
+        }
 
-    .demo{
-        width:70%;
-    }
+        .w1 {
+            background-image: url("https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80");
+        }
 
-    .right{
-        width:30%;
-        padding:25px 18px;
-    }
+        .w2 {
+            background-image: url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80");
+        }
 
-    iframe{
-        height:100vh;
-        min-height:700px;
-    }
+        .w3 {
+            background-image: url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80");
+        }
 
-    h1{
-        font-size:28px;
-    }
+        /* ABOUT */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
 
-    .manual-whatsapp,
-    .signup{
-        font-size:19px;
-    }
-}
-</style>
+        .about img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .about h2 {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .about h2 span {
+            color: #ff4d00;
+        }
+
+        .about p {
+            color: #bbb;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* TRAINERS */
+        .trainers {
+            background: #111;
+        }
+
+        .trainer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .trainer {
+            background: #181818;
+            text-align: center;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .trainer img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .trainer-info {
+            padding: 20px;
+        }
+
+        .trainer h3 {
+            font-size: 23px;
+        }
+
+        .trainer p {
+            color: #ff4d00;
+            margin-top: 5px;
+        }
+
+        /* PRICING */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .price-card {
+            background: #171717;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+
+        .price-card.featured {
+            border: 2px solid #ff4d00;
+            transform: scale(1.04);
+        }
+
+        .price-card h3 {
+            font-size: 25px;
+        }
+
+        .price {
+            font-size: 50px;
+            color: #ff4d00;
+            font-weight: 900;
+            margin: 20px 0;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .price-card li {
+            padding: 9px;
+            color: #bbb;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: #111;
+        }
+
+        .contact-box {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .contact-box h2 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 16px;
+            background: #181818;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        button {
+            padding: 16px;
+            border: none;
+            background: #ff4d00;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #050505;
+            color: #777;
+        }
+
+        footer span {
+            color: #ff4d00;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #050505;
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .workout-grid,
+            .trainer-grid,
+            .pricing-grid,
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .price-card.featured {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .stats {
+                padding: 30px 5%;
+            }
+
+            .title h2,
+            .about h2,
+            .contact-box h2 {
+                font-size: 35px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">FLEXZONE</div>
 
-    <div class="demo">
-        <iframe src="https://www.allpanel7.com/?code=MAHA1991"></iframe>
-    </div>
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
-    <div class="right">
+        <ul id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#workouts">Workouts</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#trainers">Trainers</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <div class="box">
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <small>WELCOME TO FLEXZONE</small>
 
-            <div class="badge">ALLPANEL7</div>
+            <h1>
+                STRONGER<br>
+                <span>EVERY DAY.</span>
+            </h1>
 
-            <h1>Get Your AllPanel7 ID</h1>
-
-            <p class="sub">
-                Choose the registration method that's most convenient for you and get started with AllPanel 7 today!
+            <p>
+                Train harder. Move better. Live stronger.
+                Join our premium fitness community and transform
+                your body and mindset.
             </p>
 
-            <div class="process">
+            <a href="#pricing" class="btn">START TRAINING</a>
+        </div>
+    </section>
 
-                <h2>Get Your AllPanel 7 ID – Your Choice!</h2>
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat">
+            <h2>10K+</h2>
+            <p>Members</p>
+        </div>
 
-                <h3>✅ Manual ID</h3>
+        <div class="stat">
+            <h2>25+</h2>
+            <p>Expert Trainers</p>
+        </div>
 
-                <p>
-                    Click the <strong>"WhatsApp Now"</strong> button and our team will create your ID for you.
-                </p>
+        <div class="stat">
+            <h2>50+</h2>
+            <p>Equipment</p>
+        </div>
 
-                <a class="manual-whatsapp"
-                   href="https://wa.me/+917980303785?text=Hello%20I%20want%20new%20manual%20ID"
-                   target="_blank">
-                    📲 WhatsApp Now
-                </a>
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Gym Access</p>
+        </div>
+    </div>
 
-                <h3>✅ Self-Registration</h3>
+    <!-- WORKOUTS -->
+    <section class="workouts" id="workouts">
 
-                <p>
-                    Click the <strong>"Sign Up"</strong> button and follow these simple steps:
-                </p>
+        <div class="title">
+            <small>OUR PROGRAMS</small>
+            <h2>CHOOSE YOUR <span>WORKOUT</span></h2>
+        </div>
 
-                <ol>
-                    <li>Enter your mobile number.</li>
-                    <li>Create your username.</li>
-                    <li>Create your password and confirm it.</li>
-                    <li>The Signup Code is pre-filled as <strong>MAHA1991</strong>.</li>
-                    <li>Click <strong>"Sign Up"</strong> to complete your registration.</li>
-                </ol>
+        <div class="workout-grid">
 
-                <a class="signup"
-                   href="https://www.allpanel7.com/?code=MAHA1991"
-                   target="_blank">
-                    📝 Sign Up
-                </a>
-
+            <div class="workout w1">
+                <div class="workout-content">
+                    <h3>Strength Training</h3>
+                    <p>Build muscle and increase your strength.</p>
+                </div>
             </div>
 
-            <div class="features">
-
-                <div class="feature">
-                    Minimum Deposit:
-                    <span>₹100 Only</span>
+            <div class="workout w2">
+                <div class="workout-content">
+                    <h3>HIIT Training</h3>
+                    <p>High intensity workouts for maximum results.</p>
                 </div>
-
-                <div class="feature">
-                    Welcome Bonus:
-                    <span>10%</span>
-                </div>
-
-                <div class="feature">
-                    Auto and Manual Service:
-                    <span>Available</span>
-                </div>
-
-                <div class="feature">
-                    Quick Help:
-                    <span>24/7 Support Available</span>
-                </div>
-
             </div>
 
-            <div class="website-row">
-
-                <a class="website"
-                   href="https://www.allpanel7.com/?code=MAHA1991"
-                   target="_blank">
-                    🌐 www.allpanel7.com/?code=MAHA1991
-                </a>
-
-                <a class="whatsapp-small"
-                   href="https://wa.me/+917980303785"
-                   target="_blank">
-                    💬 WhatsApp
-                </a>
-
-            </div>
-
-            <div class="trust">
-                ✅ Trusted Manual Support<br>
-                ✅ Simple Process<br>
-                ✅ Fast Response
-            </div>
-
-            <div class="footer">
-                18+ Only | Play Responsibly | Follow Your Local Laws | T&amp;C Apply
+            <div class="workout w3">
+                <div class="workout-content">
+                    <h3>Cardio</h3>
+                    <p>Improve endurance and burn calories.</p>
+                </div>
             </div>
 
         </div>
+    </section>
 
-    </div>
+    <!-- ABOUT -->
+    <section id="about">
 
-</div>
+        <div class="about">
+
+            <div>
+                <img
+                    src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1000&q=85"
+                    alt="Modern gym">
+            </div>
+
+            <div>
+                <h2>MORE THAN A <span>GYM.</span></h2>
+
+                <p>
+                    FLEXZONE is built for people who want more from
+                    their training. Our facility combines modern
+                    equipment, professional coaching and a community
+                    that keeps you motivated.
+                </p>
+
+                <p>
+                    Whether you're a beginner or an experienced athlete,
+                    our programs can help you work toward your fitness
+                    goals.
+                </p>
+
+                <a href="#contact" class="btn">JOIN FLEXZONE</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TRAINERS -->
+    <section class="trainers" id="trainers">
+
+        <div class="title">
+            <small>OUR TEAM</small>
+            <h2>MEET OUR <span>TRAINERS</span></h2>
+        </div>
+
+        <div class="trainer-grid">
+
+            <div class="trainer">
+                <img
+                    src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=700&q=80"
+                    alt="Trainer">
+                <div class="trainer-info">
+                    <h3>Alex Carter</h3>
+                    <p>Strength Coach</p>
+                </div>
+            </div>
+
+            <div class="trainer">
+                <img
+                    src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=700&q=80"
+                    alt="Trainer">
+                <div class="trainer-info">
+                    <h3>Sarah Wilson</h3>
+                    <p>Fitness Coach</p>
+                </div>
+            </div>
+
+            <div class="trainer">
+                <img
+                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=700&q=80"
+                    alt="Trainer">
+                <div class="trainer-info">
+                    <h3>Mike Johnson</h3>
+                    <p>Personal Trainer</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+
+        <div class="title">
+            <small>MEMBERSHIP</small>
+            <h2>FIND YOUR <span>PLAN</span></h2>
+        </div>
+
+        <div class="pricing-grid">
+
+            <div class="price-card">
+                <h3>STARTER</h3>
+
+                <div class="price">$25</div>
+
+                <ul>
+                    <li>Gym Access</li>
+                    <li>Locker Room</li>
+                    <li>Free Wi-Fi</li>
+                    <li>Basic Equipment</li>
+                </ul>
+
+                <a href="#contact" class="btn">JOIN NOW</a>
+            </div>
+
+            <div class="price-card featured">
+                <h3>PRO</h3>
+
+                <div class="price">$49</div>
+
+                <ul>
+                    <li>24/7 Gym Access</li>
+                    <li>All Equipment</li>
+                    <li>Group Classes</li>
+                    <li>2 Trainer Sessions</li>
+                </ul>
+
+                <a href="#contact" class="btn">JOIN NOW</a>
+            </div>
+
+            <div class="price-card">
+                <h3>ELITE</h3>
+
+                <div class="price">$79</div>
+
+                <ul>
+                    <li>24/7 Gym Access</li>
+                    <li>All Equipment</li>
+                    <li>Unlimited Classes</li>
+                    <li>Personal Training</li>
+                </ul>
+
+                <a href="#contact" class="btn">JOIN NOW</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+        <div class="contact-box">
+
+            <h2>READY TO <span>START?</span></h2>
+
+            <p>
+                Send us a message and take the first step toward
+                your fitness goals.
+            </p>
+
+            <form id="contactForm">
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Your Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    placeholder="Your Email"
+                    required
+                >
+
+                <input
+                    type="tel"
+                    placeholder="Phone Number"
+                >
+
+                <textarea
+                    placeholder="Tell us what you want to achieve..."
+                    required
+                ></textarea>
+
+                <button type="submit">SEND MESSAGE</button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            © 2026 <span>FLEXZONE</span>. All Rights Reserved.
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("active");
+        }
+
+        document.querySelectorAll("#navMenu a").forEach(function(link) {
+            link.addEventListener("click", function() {
+                document.getElementById("navMenu").classList.remove("active");
+            });
+        });
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+
+            alert(
+                "Thanks, " + name +
+                "! Your message has been received."
+            );
+
+            this.reset();
+        });
+    </script>
 
 </body>
 </html>
+```
