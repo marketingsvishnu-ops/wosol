@@ -2,758 +2,865 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLEXZONE | Premium Fitness</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0b0b0b;
-            color: #fff;
-        }
-
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.85);
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #ff4d00;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #ff4d00;
-        }
-
-        .menu-btn {
-            display: none;
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 8% 60px;
-            background:
-                linear-gradient(90deg, #000 20%, transparent),
-                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85")
-                center/cover;
-        }
-
-        .hero-content {
-            max-width: 650px;
-        }
-
-        .hero small {
-            color: #ff4d00;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 3px;
-        }
-
-        .hero h1 {
-            font-size: clamp(45px, 7vw, 85px);
-            line-height: 0.95;
-            margin: 20px 0;
-            font-weight: 900;
-        }
-
-        .hero h1 span {
-            color: #ff4d00;
-        }
-
-        .hero p {
-            color: #ccc;
-            font-size: 18px;
-            max-width: 550px;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: #ff4d00;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: white;
-            color: #111;
-            transform: translateY(-3px);
-        }
-
-        /* GENERAL */
-        section {
-            padding: 100px 8%;
-        }
-
-        .title {
-            text-align: center;
-            margin-bottom: 55px;
-        }
-
-        .title small {
-            color: #ff4d00;
-            font-weight: bold;
-            letter-spacing: 3px;
-        }
-
-        .title h2 {
-            font-size: 45px;
-            margin-top: 10px;
-        }
-
-        /* STATS */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            background: #ff4d00;
-            padding: 35px 8%;
-            text-align: center;
-        }
-
-        .stat h2 {
-            font-size: 40px;
-        }
-
-        .stat p {
-            font-weight: bold;
-        }
-
-        /* WORKOUTS */
-        .workouts {
-            background: #111;
-        }
-
-        .workout-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .workout {
-            min-height: 350px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            border-radius: 8px;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .workout::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-        }
-
-        .workout-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .workout h3 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        .workout p {
-            color: #ddd;
-        }
-
-        .w1 {
-            background-image: url("https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80");
-        }
-
-        .w2 {
-            background-image: url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80");
-        }
-
-        .w3 {
-            background-image: url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80");
-        }
-
-        /* ABOUT */
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .about h2 {
-            font-size: 45px;
-            margin-bottom: 20px;
-        }
-
-        .about h2 span {
-            color: #ff4d00;
-        }
-
-        .about p {
-            color: #bbb;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        /* TRAINERS */
-        .trainers {
-            background: #111;
-        }
-
-        .trainer-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .trainer {
-            background: #181818;
-            text-align: center;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .trainer img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-        }
-
-        .trainer-info {
-            padding: 20px;
-        }
-
-        .trainer h3 {
-            font-size: 23px;
-        }
-
-        .trainer p {
-            color: #ff4d00;
-            margin-top: 5px;
-        }
-
-        /* PRICING */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .price-card {
-            background: #171717;
-            padding: 40px 30px;
-            text-align: center;
-            border: 1px solid #333;
-            border-radius: 8px;
-        }
-
-        .price-card.featured {
-            border: 2px solid #ff4d00;
-            transform: scale(1.04);
-        }
-
-        .price-card h3 {
-            font-size: 25px;
-        }
-
-        .price {
-            font-size: 50px;
-            color: #ff4d00;
-            font-weight: 900;
-            margin: 20px 0;
-        }
-
-        .price-card ul {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .price-card li {
-            padding: 9px;
-            color: #bbb;
-        }
-
-        /* CONTACT */
-        .contact {
-            background: #111;
-        }
-
-        .contact-box {
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .contact-box h2 {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-
-        .contact-box p {
-            color: #aaa;
-            margin-bottom: 30px;
-        }
-
-        form {
-            display: grid;
-            gap: 15px;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 16px;
-            background: #181818;
-            border: 1px solid #333;
-            color: white;
-            border-radius: 4px;
-            outline: none;
-        }
-
-        textarea {
-            height: 150px;
-            resize: none;
-        }
-
-        button {
-            padding: 16px;
-            border: none;
-            background: #ff4d00;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #050505;
-            color: #777;
-        }
-
-        footer span {
-            color: #ff4d00;
-        }
-
-        /* MOBILE */
-        @media (max-width: 900px) {
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: #050505;
-                flex-direction: column;
-                text-align: center;
-                padding: 25px;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            .menu-btn {
-                display: block;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
-            }
-
-            .workout-grid,
-            .trainer-grid,
-            .pricing-grid,
-            .about {
-                grid-template-columns: 1fr;
-            }
-
-            .price-card.featured {
-                transform: none;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .hero {
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-
-            section {
-                padding: 70px 5%;
-            }
-
-            .stats {
-                padding: 30px 5%;
-            }
-
-            .title h2,
-            .about h2,
-            .contact-box h2 {
-                font-size: 35px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GYM3D | Next Level Fitness</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #050505;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ===== BACKGROUND ===== */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,70,0,.18), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(255,140,0,.10), transparent 30%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ===== NAVBAR ===== */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(0,0,0,.65);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ff4d00;
+    letter-spacing: 3px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #ff4d00;
+}
+
+/* ===== HERO ===== */
+
+.hero {
+    min-height: 100vh;
+    padding: 130px 7% 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    perspective: 1200px;
+}
+
+.hero-text {
+    max-width: 600px;
+    z-index: 2;
+}
+
+.hero-text small {
+    color: #ff4d00;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+.hero-text h1 {
+    font-size: clamp(50px, 7vw, 100px);
+    line-height: .9;
+    margin: 25px 0;
+    text-shadow: 0 15px 30px rgba(0,0,0,.7);
+}
+
+.hero-text h1 span {
+    color: #ff4d00;
+}
+
+.hero-text p {
+    color: #aaa;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 32px;
+    color: white;
+    background: linear-gradient(135deg,#ff4d00,#ff8a00);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 15px 35px rgba(255,70,0,.25);
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 20px 45px rgba(255,70,0,.4);
+}
+
+/* ===== 3D GYM OBJECT ===== */
+
+.scene {
+    width: 430px;
+    height: 430px;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cube {
+    width: 230px;
+    height: 230px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 14s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,70,0,.08);
+    border: 2px solid #ff4d00;
+    box-shadow:
+        inset 0 0 35px rgba(255,70,0,.12),
+        0 0 35px rgba(255,70,0,.15);
+    backdrop-filter: blur(5px);
+}
+
+.face span {
+    font-size: 80px;
+    filter: drop-shadow(0 10px 15px black);
+}
+
+.front  { transform: translateZ(115px); }
+.back   { transform: rotateY(180deg) translateZ(115px); }
+.right  { transform: rotateY(90deg) translateZ(115px); }
+.left   { transform: rotateY(-90deg) translateZ(115px); }
+.top    { transform: rotateX(90deg) translateZ(115px); }
+.bottom { transform: rotateX(-90deg) translateZ(115px); }
+
+@keyframes rotateCube {
+    from {
+        transform: rotateX(-15deg) rotateY(0deg);
+    }
+    to {
+        transform: rotateX(-15deg) rotateY(360deg);
+    }
+}
+
+/* ===== FLOATING BALLS ===== */
+
+.ball {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#ff4d00,#ffb000);
+    box-shadow: 0 15px 40px rgba(255,70,0,.3);
+}
+
+.ball.one {
+    width: 30px;
+    height: 30px;
+    top: 15%;
+    right: 10%;
+    animation: float 4s ease-in-out infinite;
+}
+
+.ball.two {
+    width: 18px;
+    height: 18px;
+    bottom: 20%;
+    left: 5%;
+    animation: float 5s ease-in-out infinite reverse;
+}
+
+.ball.three {
+    width: 45px;
+    height: 45px;
+    bottom: 10%;
+    right: 25%;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+/* ===== SECTIONS ===== */
+
+section {
+    padding: 100px 7%;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.title small {
+    color: #ff4d00;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.title h2 {
+    font-size: 50px;
+    margin-top: 10px;
+}
+
+.title span {
+    color: #ff4d00;
+}
+
+/* ===== 3D CARDS ===== */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+    perspective: 1200px;
+}
+
+.card {
+    min-height: 300px;
+    padding: 35px;
+    border-radius: 18px;
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(15px);
+    transform-style: preserve-3d;
+    transition: transform .15s ease;
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.5),
+        inset 0 1px rgba(255,255,255,.1);
+}
+
+.card:hover {
+    box-shadow:
+        0 35px 70px rgba(0,0,0,.7),
+        0 0 30px rgba(255,70,0,.1);
+}
+
+.card-icon {
+    font-size: 60px;
+    margin-bottom: 30px;
+    transform: translateZ(40px);
+}
+
+.card h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    transform: translateZ(30px);
+}
+
+.card p {
+    color: #aaa;
+    line-height: 1.7;
+    transform: translateZ(20px);
+}
+
+/* ===== STATS ===== */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.stat {
+    padding: 35px;
+    text-align: center;
+    border-radius: 15px;
+    background: #111;
+    border: 1px solid #222;
+    transform-style: preserve-3d;
+    transition: .3s;
+}
+
+.stat:hover {
+    transform: translateY(-10px) rotateX(8deg);
+    border-color: #ff4d00;
+}
+
+.stat h3 {
+    font-size: 45px;
+    color: #ff4d00;
+}
+
+.stat p {
+    color: #999;
+    margin-top: 5px;
+}
+
+/* ===== PRICING ===== */
+
+.pricing {
+    background: linear-gradient(#080808,#0d0d0d);
+}
+
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+    perspective: 1500px;
+}
+
+.price-card {
+    padding: 45px 30px;
+    text-align: center;
+    background: linear-gradient(145deg,#161616,#0d0d0d);
+    border: 1px solid #292929;
+    border-radius: 20px;
+    transition: .4s;
+    transform-style: preserve-3d;
+}
+
+.price-card:hover {
+    transform: translateY(-15px) rotateX(6deg) rotateY(-5deg);
+    border-color: #ff4d00;
+}
+
+.price-card.featured {
+    border: 2px solid #ff4d00;
+    transform: translateY(-15px);
+}
+
+.price-card h3 {
+    font-size: 27px;
+}
+
+.price {
+    font-size: 55px;
+    color: #ff4d00;
+    font-weight: 900;
+    margin: 20px 0;
+}
+
+.price-card ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.price-card li {
+    padding: 10px;
+    color: #aaa;
+    border-bottom: 1px solid #222;
+}
+
+/* ===== CONTACT ===== */
+
+.contact-box {
+    max-width: 800px;
+    margin: auto;
+    padding: 50px;
+    border-radius: 25px;
+    background: linear-gradient(145deg,#171717,#0c0c0c);
+    border: 1px solid #292929;
+    box-shadow: 0 30px 80px rgba(0,0,0,.6);
+}
+
+.contact-box h2 {
+    text-align: center;
+    font-size: 45px;
+    margin-bottom: 30px;
+}
+
+form {
+    display: grid;
+    gap: 15px;
+}
+
+input,
+textarea {
+    padding: 17px;
+    border: 1px solid #333;
+    background: #080808;
+    color: white;
+    border-radius: 8px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #ff4d00;
+}
+
+textarea {
+    height: 140px;
+    resize: none;
+}
+
+button {
+    padding: 17px;
+    border: 0;
+    border-radius: 8px;
+    background: linear-gradient(135deg,#ff4d00,#ff8a00);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+    text-align: center;
+    padding: 35px;
+    color: #666;
+    border-top: 1px solid #222;
+}
+
+footer span {
+    color: #ff4d00;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:900px) {
+
+    nav ul {
+        display: none;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 150px;
+    }
+
+    .scene {
+        width: 300px;
+        height: 300px;
+        transform: scale(.75);
+    }
+
+    .card-grid,
+    .price-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .price-card.featured {
+        transform: none;
+    }
+}
+
+@media(max-width:500px) {
+
+    .hero-text h1 {
+        font-size: 55px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 70px 5%;
+    }
+
+    .contact-box {
+        padding: 25px;
+    }
+
+    .title h2 {
+        font-size: 38px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="logo">FLEXZONE</div>
+<!-- NAVIGATION -->
 
-        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+<nav>
+    <div class="logo">GYM3D</div>
 
-        <ul id="navMenu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#workouts">Workouts</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#trainers">Trainers</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <small>WELCOME TO FLEXZONE</small>
+<!-- HERO -->
 
-            <h1>
-                STRONGER<br>
-                <span>EVERY DAY.</span>
-            </h1>
+<section class="hero" id="home">
 
-            <p>
-                Train harder. Move better. Live stronger.
-                Join our premium fitness community and transform
-                your body and mindset.
-            </p>
+    <div class="hero-text">
 
-            <a href="#pricing" class="btn">START TRAINING</a>
+        <small>THE FUTURE OF FITNESS</small>
+
+        <h1>
+            TRAIN<br>
+            <span>IN 3D.</span>
+        </h1>
+
+        <p>
+            Experience a next-generation fitness environment
+            designed for people who want to become stronger,
+            faster and better.
+        </p>
+
+        <a href="#pricing" class="btn">
+            JOIN THE GYM
+        </a>
+
+    </div>
+
+    <div class="scene">
+
+        <div class="cube">
+
+            <div class="face front">
+                <span>🏋️</span>
+            </div>
+
+            <div class="face back">
+                <span>💪</span>
+            </div>
+
+            <div class="face right">
+                <span>🔥</span>
+            </div>
+
+            <div class="face left">
+                <span>⚡</span>
+            </div>
+
+            <div class="face top">
+                <span>🏆</span>
+            </div>
+
+            <div class="face bottom">
+                <span>🥇</span>
+            </div>
+
         </div>
-    </section>
 
-    <!-- STATS -->
+    </div>
+
+    <div class="ball one"></div>
+    <div class="ball two"></div>
+    <div class="ball three"></div>
+
+</section>
+
+<!-- STATS -->
+
+<section>
+
     <div class="stats">
+
         <div class="stat">
-            <h2>10K+</h2>
+            <h3>10K+</h3>
             <p>Members</p>
         </div>
 
         <div class="stat">
-            <h2>25+</h2>
-            <p>Expert Trainers</p>
+            <h3>25+</h3>
+            <p>Trainers</p>
         </div>
 
         <div class="stat">
-            <h2>50+</h2>
-            <p>Equipment</p>
+            <h3>50+</h3>
+            <p>Machines</p>
         </div>
 
         <div class="stat">
-            <h2>24/7</h2>
-            <p>Gym Access</p>
+            <h3>24/7</h3>
+            <p>Access</p>
         </div>
+
     </div>
 
-    <!-- WORKOUTS -->
-    <section class="workouts" id="workouts">
+</section>
 
-        <div class="title">
-            <small>OUR PROGRAMS</small>
-            <h2>CHOOSE YOUR <span>WORKOUT</span></h2>
-        </div>
+<!-- FEATURES -->
 
-        <div class="workout-grid">
+<section id="features">
 
-            <div class="workout w1">
-                <div class="workout-content">
-                    <h3>Strength Training</h3>
-                    <p>Build muscle and increase your strength.</p>
-                </div>
-            </div>
+    <div class="title">
+        <small>WHY US</small>
+        <h2>BUILT FOR <span>RESULTS</span></h2>
+    </div>
 
-            <div class="workout w2">
-                <div class="workout-content">
-                    <h3>HIIT Training</h3>
-                    <p>High intensity workouts for maximum results.</p>
-                </div>
-            </div>
+    <div class="card-grid">
 
-            <div class="workout w3">
-                <div class="workout-content">
-                    <h3>Cardio</h3>
-                    <p>Improve endurance and burn calories.</p>
-                </div>
-            </div>
+        <div class="card">
 
-        </div>
-    </section>
+            <div class="card-icon">🏋️</div>
 
-    <!-- ABOUT -->
-    <section id="about">
-
-        <div class="about">
-
-            <div>
-                <img
-                    src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1000&q=85"
-                    alt="Modern gym">
-            </div>
-
-            <div>
-                <h2>MORE THAN A <span>GYM.</span></h2>
-
-                <p>
-                    FLEXZONE is built for people who want more from
-                    their training. Our facility combines modern
-                    equipment, professional coaching and a community
-                    that keeps you motivated.
-                </p>
-
-                <p>
-                    Whether you're a beginner or an experienced athlete,
-                    our programs can help you work toward your fitness
-                    goals.
-                </p>
-
-                <a href="#contact" class="btn">JOIN FLEXZONE</a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- TRAINERS -->
-    <section class="trainers" id="trainers">
-
-        <div class="title">
-            <small>OUR TEAM</small>
-            <h2>MEET OUR <span>TRAINERS</span></h2>
-        </div>
-
-        <div class="trainer-grid">
-
-            <div class="trainer">
-                <img
-                    src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=700&q=80"
-                    alt="Trainer">
-                <div class="trainer-info">
-                    <h3>Alex Carter</h3>
-                    <p>Strength Coach</p>
-                </div>
-            </div>
-
-            <div class="trainer">
-                <img
-                    src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=700&q=80"
-                    alt="Trainer">
-                <div class="trainer-info">
-                    <h3>Sarah Wilson</h3>
-                    <p>Fitness Coach</p>
-                </div>
-            </div>
-
-            <div class="trainer">
-                <img
-                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=700&q=80"
-                    alt="Trainer">
-                <div class="trainer-info">
-                    <h3>Mike Johnson</h3>
-                    <p>Personal Trainer</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing">
-
-        <div class="title">
-            <small>MEMBERSHIP</small>
-            <h2>FIND YOUR <span>PLAN</span></h2>
-        </div>
-
-        <div class="pricing-grid">
-
-            <div class="price-card">
-                <h3>STARTER</h3>
-
-                <div class="price">$25</div>
-
-                <ul>
-                    <li>Gym Access</li>
-                    <li>Locker Room</li>
-                    <li>Free Wi-Fi</li>
-                    <li>Basic Equipment</li>
-                </ul>
-
-                <a href="#contact" class="btn">JOIN NOW</a>
-            </div>
-
-            <div class="price-card featured">
-                <h3>PRO</h3>
-
-                <div class="price">$49</div>
-
-                <ul>
-                    <li>24/7 Gym Access</li>
-                    <li>All Equipment</li>
-                    <li>Group Classes</li>
-                    <li>2 Trainer Sessions</li>
-                </ul>
-
-                <a href="#contact" class="btn">JOIN NOW</a>
-            </div>
-
-            <div class="price-card">
-                <h3>ELITE</h3>
-
-                <div class="price">$79</div>
-
-                <ul>
-                    <li>24/7 Gym Access</li>
-                    <li>All Equipment</li>
-                    <li>Unlimited Classes</li>
-                    <li>Personal Training</li>
-                </ul>
-
-                <a href="#contact" class="btn">JOIN NOW</a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-
-        <div class="contact-box">
-
-            <h2>READY TO <span>START?</span></h2>
+            <h3>Heavy Training</h3>
 
             <p>
-                Send us a message and take the first step toward
-                your fitness goals.
+                Premium equipment designed for serious
+                strength and muscle development.
             </p>
-
-            <form id="contactForm">
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Your Name"
-                    required
-                >
-
-                <input
-                    type="email"
-                    placeholder="Your Email"
-                    required
-                >
-
-                <input
-                    type="tel"
-                    placeholder="Phone Number"
-                >
-
-                <textarea
-                    placeholder="Tell us what you want to achieve..."
-                    required
-                ></textarea>
-
-                <button type="submit">SEND MESSAGE</button>
-
-            </form>
 
         </div>
 
-    </section>
+        <div class="card">
 
-    <!-- FOOTER -->
-    <footer>
-        <p>
-            © 2026 <span>FLEXZONE</span>. All Rights Reserved.
-        </p>
-    </footer>
+            <div class="card-icon">⚡</div>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById("navMenu").classList.toggle("active");
-        }
+            <h3>HIIT Zone</h3>
 
-        document.querySelectorAll("#navMenu a").forEach(function(link) {
-            link.addEventListener("click", function() {
-                document.getElementById("navMenu").classList.remove("active");
-            });
-        });
+            <p>
+                High intensity workouts designed to improve
+                endurance and performance.
+            </p>
 
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+        </div>
 
-            const name = document.getElementById("name").value;
+        <div class="card">
 
-            alert(
-                "Thanks, " + name +
-                "! Your message has been received."
-            );
+            <div class="card-icon">🥗</div>
 
-            this.reset();
-        });
-    </script>
+            <h3>Fitness Guidance</h3>
+
+            <p>
+                Professional guidance to help you build
+                sustainable training and nutrition habits.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PRICING -->
+
+<section class="pricing" id="pricing">
+
+    <div class="title">
+
+        <small>MEMBERSHIP</small>
+
+        <h2>CHOOSE YOUR <span>LEVEL</span></h2>
+
+    </div>
+
+    <div class="price-grid">
+
+        <div class="price-card">
+
+            <h3>STARTER</h3>
+
+            <div class="price">$25</div>
+
+            <ul>
+                <li>Gym Access</li>
+                <li>Locker Room</li>
+                <li>Cardio Zone</li>
+                <li>Free Wi-Fi</li>
+            </ul>
+
+            <a href="#contact" class="btn">
+                SELECT
+            </a>
+
+        </div>
+
+        <div class="price-card featured">
+
+            <h3>PRO</h3>
+
+            <div class="price">$49</div>
+
+            <ul>
+                <li>24/7 Gym Access</li>
+                <li>All Equipment</li>
+                <li>Group Classes</li>
+                <li>Trainer Sessions</li>
+            </ul>
+
+            <a href="#contact" class="btn">
+                SELECT
+            </a>
+
+        </div>
+
+        <div class="price-card">
+
+            <h3>ELITE</h3>
+
+            <div class="price">$79</div>
+
+            <ul>
+                <li>24/7 Gym Access</li>
+                <li>All Equipment</li>
+                <li>Unlimited Classes</li>
+                <li>Personal Trainer</li>
+            </ul>
+
+            <a href="#contact" class="btn">
+                SELECT
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="contact-box">
+
+        <h2>
+            START YOUR <span style="color:#ff4d00;">JOURNEY</span>
+        </h2>
+
+        <form id="contactForm">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your Name"
+                required
+            >
+
+            <input
+                type="email"
+                placeholder="Your Email"
+                required
+            >
+
+            <input
+                type="tel"
+                placeholder="Phone Number"
+            >
+
+            <textarea
+                placeholder="Tell us about your fitness goal..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                JOIN NOW
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    © 2026 <span>GYM3D</span> — Train Beyond Limits.
+</footer>
+
+<script>
+
+/* ===== 3D CARD MOUSE EFFECT ===== */
+
+const cards = document.querySelectorAll(".card");
+
+cards.forEach(card => {
+
+    card.addEventListener("mousemove", e => {
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+
+        card.style.transform =
+            `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0) rotateY(0)";
+    });
+
+});
+
+/* ===== FORM ===== */
+
+document
+.getElementById("contactForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+
+    alert(
+        "Welcome to GYM3D, " +
+        name +
+        "! We will contact you soon."
+    );
+
+    this.reset();
+
+});
+
+</script>
 
 </body>
 </html>
